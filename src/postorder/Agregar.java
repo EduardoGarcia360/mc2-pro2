@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 public class Agregar extends JFrame implements ActionListener {
 
 	Image imagen, icono;
+	public static String ruta;
 
 	/**
 	 * Launch the application.
@@ -106,7 +107,7 @@ public class Agregar extends JFrame implements ActionListener {
 			 try{
 		            if (s == JFileChooser.APPROVE_OPTION){
 		                File JArchivo = fc.getSelectedFile();
-		                String ruta = JArchivo.getAbsolutePath();
+		                ruta = JArchivo.getAbsolutePath();
 		                
 		                if( !(ruta.endsWith("dot.exe")) ){
 		                	
