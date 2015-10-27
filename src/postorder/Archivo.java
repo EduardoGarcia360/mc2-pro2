@@ -1,5 +1,6 @@
 package postorder;
 
+import java.awt.Image;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,14 +8,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Archivo {
+	String ruta_maquina, ruta_;
 	
 	public void CrearGRAPHVIZ(String Contenido,LinkedList<String> nodos){
 		
-		String ruta_maquina = Agregar.ruta.replace("\\","\\"+"\\" );
-		String ruta_ = ruta_maquina.replace("dot.exe", "");
+		ruta_maquina = Agregar.ruta.replace("\\","\\"+"\\" );
+		ruta_ = ruta_maquina.replace("dot.exe", "");
 		String nodo_ = "";
 		for(int i=0; i<nodos.size(); i++){
 			nodo_ += nodos.get(i).toString();
@@ -38,7 +42,7 @@ public class Archivo {
 			
 		}
 		
-		try{//
+		try{
 			String rutaDot = ruta_maquina;
 			String archivoGraphviz = ruta_ +  "nuevo.gv";
 			String archivoImagen = ruta_ + "grafo1.png";
@@ -54,10 +58,14 @@ public class Archivo {
 		      
 		      Runtime ruti = Runtime.getRuntime();
 		      
-		      ruti.exec(cmd);
+		      ruti.exec(cmd).waitFor();
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, e,"Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
+		
+		ImageIcon icon = new ImageIcon(ruta_ + "grafo1.png"); 
+		Icon icono = new ImageIcon(icon.getImage().getScaledInstance(Grafico.lblGrafo.getWidth(), Grafico.lblGrafo.getHeight(), Image.SCALE_DEFAULT));
+		Grafico.lblGrafo.setIcon(icono);
 	}
 
 }

@@ -1,6 +1,7 @@
 package postorder;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -44,6 +46,7 @@ public class Grafico extends JFrame  implements ActionListener {
 	Image imagen, icono;
 	JTextField txtcadena;
 	JButton btnGenerar;
+	public static JLabel lblGrafo;
 	private JLabel lblGenerarGrafo;
 	LinkedList<String> lista_nodos = new LinkedList<String>();
 	LinkedList<String> lista_relacion = new LinkedList<String>();
@@ -52,7 +55,7 @@ public class Grafico extends JFrame  implements ActionListener {
 	 * Create the frame.
 	 */
 	public Grafico() {
-		this.setSize(1280, 720);
+		this.setSize(1093, 720);
 		this.setTitle("Matematica para Computacion 2 - Proyecto 2");
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -80,14 +83,28 @@ public class Grafico extends JFrame  implements ActionListener {
 		btnGenerar.setBorder(null);
 		btnGenerar.setOpaque(false);
 		btnGenerar.setIcon(new ImageIcon(Grafico.class.getResource("/postorder/generar.png")));
-		btnGenerar.setBounds(890, 23, 153, 100);
+		btnGenerar.setBounds(757, 21, 153, 100);
 		btnGenerar.addActionListener(this);
 		panel.add(btnGenerar);
 		
 		lblGenerarGrafo = new JLabel("Generar Grafo");
 		lblGenerarGrafo.setHorizontalAlignment(JLabel.CENTER);
-		lblGenerarGrafo.setBounds(890, 137, 153, 14);
+		lblGenerarGrafo.setBounds(757, 132, 153, 14);
 		panel.add(lblGenerarGrafo);
+		
+		lblGrafo = new JLabel();
+		lblGrafo.setBounds(52, 162, 992, 496);
+		lblGrafo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		panel.add(lblGrafo);
+		
+		JButton btnIntegrantes = new JButton("Integrantes");
+		btnIntegrantes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "Realizado por:\nRudy Lopez > 2012-12\nHumberto Garcia > 2012-12\nEduardo Antonio Garcia Franco > 2012-12961");
+			}
+		});
+		btnIntegrantes.setBounds(955, 64, 89, 23);
+		panel.add(btnIntegrantes);
 		this.setVisible(true);
 		
 	}
@@ -186,9 +203,10 @@ public class Grafico extends JFrame  implements ActionListener {
 			}
 			
 		}//FIN FOR
-		System.out.println(relacion_grafo);
 		archivo.CrearGRAPHVIZ(relacion_grafo, nodos);
+		
 	}
+	
 	
 	private boolean esnumero(String dato){
         try{
@@ -217,5 +235,4 @@ public class Grafico extends JFrame  implements ActionListener {
 			Analizar(linea);
 		}
 	}
-
 }
